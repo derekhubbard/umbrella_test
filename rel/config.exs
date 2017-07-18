@@ -41,7 +41,7 @@ end
 # will be used by default
 
 release :umbrella_test do
-  set version: "0.1.5"
+  set version: "0.1.6"
   set applications: [
     :runtime_tools,
     :app1,
