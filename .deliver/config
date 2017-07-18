@@ -22,10 +22,10 @@ RELEASE_DIR="$BUILD_AT/rel/$APP"
 
 # For *Phoenix* projects, symlink prod.secret.exs to our tmp source
 pre_erlang_get_and_update_deps() {
-  local _myo_web_prod_secret_path="/home/deploy/myo-web-prod.secret.exs"
-  local _pomiet_web_prod_secret_path="/home/deploy/pomiet-web-prod.secret.exs"
+  local _app1_prod_secret_path="/home/deploy/app1-prod.secret.exs"
+  local _app2_prod_secret_path="/home/deploy/app2-prod.secret.exs"
   if [ "$TARGET_MIX_ENV" = "prod" ]; then
     __sync_remote "
-      ln -sfn '$_myo_web_prod_secret_path' '$BUILD_AT/apps/myo_web/config/prod.secret.exs' && ln -sfn '$_pomiet_web_prod_secret_path' '$BUILD_AT/apps/pomiet_web/config/prod.secret.exs' "
+      ln -sfn '$_app1_prod_secret_path' '$BUILD_AT/apps/app1/config/prod.secret.exs' && ln -sfn '$_app2_prod_secret_path' '$BUILD_AT/apps/app2/config/prod.secret.exs' "
   fi
 }
