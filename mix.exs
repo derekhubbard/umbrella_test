@@ -22,8 +22,6 @@ defmodule UmbrellaTest.Mixfile do
   # and cannot be accessed from applications inside the apps folder
   defp deps do
     [
-      {:distillery, "~> 1.4"},
-      {:edeliver, "~> 1.4"}
     ]
   end
 end
