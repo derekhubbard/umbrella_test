@@ -30,3 +30,33 @@ pre_erlang_get_and_update_deps() {
       ln -sfn '$_app1_prod_secret_path' '$BUILD_AT/apps/app1/config/prod.secret.exs' && ln -sfn '$_app2_prod_secret_path' '$BUILD_AT/apps/app2/config/prod.secret.exs' "
   fi
 }
+
+post_erlang_clean_compile() {
+  [[ "$APP" = "umbrella_test" ]] && prepare_projects_in_umbrella
+}
+
+prepare_projects_in_umbrella() {
+  status "Preparing projects in umbrella"
+  __sync_remote "
+    [ -f ~/.profile ] && source ~/.profile
+    set -e
+    cd '${BUILD_AT}'
+    for UMBRELLA_APP in \$(ls -1 apps | grep -v '$APP'); do
+      echo \"Preparing \${UMBRELLA_APP} in umbrella...\" $SILENCE
+      cd \"${BUILD_AT}/apps/\${UMBRELLA_APP}\" $SILENCE
+      APP=\"\$UMBRELLA_APP\" MIX_ENV='$TARGET_MIX_ENV' mix do deps.get, compile
+    done
+    cd 'apps/app1'
+    mkdir -p priv/static # required by the phoenix.digest task
+    npm install
+    NODE_ENV=production node ./node_modules/.bin/webpack --display-modules --display-error-details
+    APP='app1' MIX_ENV='$TARGET_MIX_ENV' $MIX_CMD phoenix.digest $SILENCE
+    cd ../../
+    cd 'apps/app2'
+    mkdir -p priv/static # required by the phoenix.digest task
+    npm install
+    NODE_ENV=production node ./node_modules/.bin/webpack --display-modules --display-error-details
+    APP='app2' MIX_ENV='$TARGET_MIX_ENV' $MIX_CMD phoenix.digest $SILENCE
+    cd ../../
+  "
+}
