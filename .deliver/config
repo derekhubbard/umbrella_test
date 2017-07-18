@@ -1,6 +1,7 @@
 # .deliver/config
 
 APP="umbrella_test"
+# APP="umbrella_master"
 
 USING_DISTILLERY=true
 
@@ -14,11 +15,11 @@ DELIVER_TO="/home/deploy"
 
 PRODUCTION_HOSTS="umbrella-test.prod" # deploy / production hosts separated by space # 54.163.178.252
 PRODUCTION_USER="deploy" # local user at deploy hosts
-DELIVER_TO="/home/deploy/$APP_staging" # deploy directory on production hosts
+DELIVER_TO="/home/deploy/$APP" # deploy directory on production hosts
 
 # Identify location of RELEASE_DIR for umbrella projects
 # RELEASE_DIR="$BUILD_AT/apps/$APP/rel/$APP"
-RELEASE_DIR="$BUILD_AT/rel/$APP"
+# RELEASE_DIR="$BUILD_AT/rel/$APP"
 
 # For *Phoenix* projects, symlink prod.secret.exs to our tmp source
 pre_erlang_get_and_update_deps() {

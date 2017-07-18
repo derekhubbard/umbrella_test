@@ -41,12 +41,11 @@ end
 # will be used by default
 
 release :umbrella_test do
-  set version: "0.1.3"
+  set version: "0.1.4"
   set applications: [
     :runtime_tools,
-    umbrella_master: :permanent,
-    app1: :permanent,
-    app2: :permanent
+    :app1,
+    :app2
   ]
 end
 
