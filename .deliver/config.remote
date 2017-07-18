@@ -5,17 +5,17 @@ APP="umbrella_test"
 
 USING_DISTILLERY=true
 
-BUILD_HOST="localhost"
-BUILD_USER="derek"
-BUILD_AT="/Users/derek/edeliver/$APP/builds"
+BUILD_HOST="umbrella-test.build"
+BUILD_USER="deploy"
+BUILD_AT="/home/deploy/edeliver/$APP/builds"
 
 STAGING_HOSTS="TBD"
-STAGING_USER="derek"
-DELIVER_TO="/Users/derek"
+STAGING_USER="deploy"
+DELIVER_TO="/home/deploy"
 
-PRODUCTION_HOSTS="localhost" # deploy / production hosts separated by space # 54.163.178.252
-PRODUCTION_USER="derek" # local user at deploy hosts
-DELIVER_TO="/Users/deploy/$APP" # deploy directory on production hosts
+PRODUCTION_HOSTS="umbrella-test.prod" # deploy / production hosts separated by space # 54.163.178.252
+PRODUCTION_USER="deploy" # local user at deploy hosts
+DELIVER_TO="/home/deploy/$APP" # deploy directory on production hosts
 
 # Identify location of RELEASE_DIR for umbrella projects
 # RELEASE_DIR="$BUILD_AT/apps/$APP/rel/$APP"
