@@ -19,7 +19,7 @@ DELIVER_TO="/home/deploy/$APP" # deploy directory on production hosts
 
 # Identify location of RELEASE_DIR for umbrella projects
 # RELEASE_DIR="$BUILD_AT/apps/$APP/rel/$APP"
-# RELEASE_DIR="$BUILD_AT/rel/$APP"
+RELEASE_DIR="$BUILD_AT/rel/$APP"
 
 # For *Phoenix* projects, symlink prod.secret.exs to our tmp source
 pre_erlang_get_and_update_deps() {
@@ -50,7 +50,7 @@ prepare_projects_in_umbrella() {
     mkdir -p priv/static # required by the phoenix.digest task
     npm install
     NODE_ENV=production node ./node_modules/brunch/bin/brunch build --production
-    APP='app1' MIX_ENV='$TARGET_MIX_ENV' $MIX_CMD phoenix.digest
+    APP='app1' MIX_ENV='$TARGET_MIX_ENV' mix phoenix.digest
   "
 }
 
