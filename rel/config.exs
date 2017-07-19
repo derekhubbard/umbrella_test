@@ -32,7 +32,7 @@ environment :prod do
   set include_src: false
   set cookie: :"/bkRr)Ya/p?Epnmqwrn]Yq*0z7mjG{kLc;I,N?X?AdVs=kPUKwLOBc7v}GSa[|ue"
   # set output_dir: "apps/umbrella_test_master/rel/umbrella_test_master"
-  set output_dir: "rel/umbrella_test"
+  # set output_dir: "rel/umbrella_test"
 end
 
 # You may define one or more releases in this file.
